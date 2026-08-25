@@ -1,20 +1,26 @@
-name: Cortex Security Scan
+name: Cortex Cloud Security Scan
+
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   cortex-scan:
+    name: Run Cortex IaC & Code Scan
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Run Cortex Scan Engine
-        uses: bridgecrewio/checkov-action@master
+      - name: Cortex Code Security Scan
+        uses: PaloAltoNetworks/cortex-cloud-scan@v1
         with:
+          scan-type: code
           directory: .
-          api-key: ${{ secrets.BC_API_KEY }}
-          soft_fail: true
+          upload-mode: upload
+          api-key-id: ${{ secrets.873 }}
+          api-key: ${{ secrets.FligiQ3jTQuUJONZcEhS1aM3fKE0KfJmlzQp0K5aybyUC0QupzMo770LF8Huwdo8u7zmNaADlaovPKZwbOMsChJ6MbQLcOd5VzFelTXJ5JD7OiNPtdzNKejvpNUFi6WE }}
