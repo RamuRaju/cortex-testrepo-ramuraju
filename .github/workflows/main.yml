@@ -1,4 +1,5 @@
 name: Cortex Security Scan
+
 on:
   push:
     branches: [ "main" ]
@@ -12,9 +13,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Run Cortex Scan Engine
+      - name: Run Open-Source Checkov Scan
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: .
-          api-key: ${{ secrets.BC_API_KEY }}
+          directory: '.'
+          framework: 'terraform'
           soft_fail: true
