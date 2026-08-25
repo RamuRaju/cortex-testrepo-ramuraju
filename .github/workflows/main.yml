@@ -1,0 +1,20 @@
+name: Cortex Security Scan
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  cortex-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Cortex Scan Engine
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          api-key: ${{ secrets.BC_API_KEY }}
+          soft_fail: true
